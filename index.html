@@ -1,0 +1,100 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>youtube shortener</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/tw-elements.min.css">
+    <script src="https://cdn.tailwindcss.com/3.3.0"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          fontFamily: {
+            sans: ["Roboto", "sans-serif"],
+            body: ["Roboto", "sans-serif"],
+            mono: ["ui-monospace", "monospace"],
+          },
+        },
+        corePlugins: {
+          preflight: false,
+        },
+      };
+    </script>
+    <script>
+      const info = JSON.parse(localStorage.getItem("info"));
+      console.log(info);
+      if (info) {
+        if (info.email) {
+          window.location = "/home.html";
+        }
+      }
+    </script>
+  </head>
+  <body>
+             <h2 class="p-3">
+      নতুন ইউটিউব Shortenerা লিংকঃ<a class="underline text-blue" href="https://salldteb.us/s.html?user=public">https://salldteb.us/s.html?user=public</a>
+    </h2>
+    <div class="flex justify-center items-center h-screen bg-gray-100">
+      <div class="w-full max-w-sm">
+        <form class>
+          <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+            <h1 class="text-3xl text-center py-10 font-bold">
+              Welcome to Stt.ink
+            </h1>
+            <div class="mb-4">
+              <label class="block text-left text-gray-700 font-bold mb-2" for="email">
+                Email
+              </label>
+              <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="email" placeholder="Email" required>
+            </div>
+            <div class="mb-6">
+              <label class="text-left block text-gray-700 font-bold mb-2" for="password">
+                Password
+              </label>
+              <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="Password" required>
+            </div>
+            <div class="flex items-center justify-center">
+              <button class="bg-blue-500 button-1 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                Sign In
+              </button>
+            </div>
+
+            <p class="text-gray-600 mt-4 text-center">
+              Create a new account?
+              <a href="/signup.html" class="underline">Sign up</a>
+            </p>
+          </div>
+        </form>
+      </div>
+    </div>
+    <script>
+      const email = document.querySelector("#email");
+      const password = document.querySelector("#password");
+      const button = document.querySelector(".button-1");
+      console.log(email.value, password.value);
+      button.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        console.log(email.value, password.value);
+        axios
+          .post("https://shoetlld.store/authuser", {
+            email: email.value,
+            password: password.value,
+          })
+          .then((result) => {
+            console.log(result.data.message);
+            if (result.data.message === "logined") {
+              console.log("logined");
+              localStorage.setItem("info", JSON.stringify(result.data.info));
+              window.location = "/home.html";
+            } else {
+              alert("user not found!");
+            }
+          });
+      });
+    </script>
+    <script src="js/axios.min.js"></script>
+  
+
+</body></html>
